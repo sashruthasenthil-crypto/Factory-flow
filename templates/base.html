@@ -24,6 +24,10 @@
 <a class="nav-link" href="{{ url_for('reports') }}"><i class="bi bi-bar-chart-line"></i> Reports & exports</a>
 <a class="nav-link" href="{{ url_for('audit_page') }}"><i class="bi bi-shield-check"></i> Audit trail</a>
 <div class="sidebar-bottom"><div class="user-chip"><div class="avatar">{{ session.get('username','U')[0]|upper }}</div><div><b>{{ session.get('username') }}</b><small>{{ session.get('role') }}</small></div></div><a class="logout" href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right"></i></a></div>
+<a class="nav-link text-danger mt-4"
+   href="{{ url_for('logout') }}">
+    <i class="bi bi-box-arrow-right"></i> Logout
+</a>
 </aside>
 <main class="main-area">
 <header class="topbar"><div><span class="eyebrow">FACTORY OPERATIONS</span><h6>{% block page_heading %}Overview{% endblock %}</h6></div><div class="top-user"><span class="status-dot"></span> {{ session.get('role') }} <span class="top-avatar">{{ session.get('username','U')[0]|upper }}</span></div></header>
