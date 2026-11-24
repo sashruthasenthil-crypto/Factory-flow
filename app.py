@@ -416,7 +416,6 @@ def audit_page():
 @app.errorhandler(500)
 def server_error(error):
     return render_template("error.html"),500
-
+init_db()
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
