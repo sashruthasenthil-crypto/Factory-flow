@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}FactoryFlow{% endblock %}</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet">
+</head><body>
+{% if session.get('user_id') %}
+<div class="app-shell">
+<aside class="sidebar">
+<a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark"><i class="bi bi-box-seam"></i></span><span>Factory<span class="brand-light">Flow</span><small>MANUFACTURING SUITE</small></span></a>
+<div class="side-label">WORKSPACE</div>
+<a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-grid-1x2"></i> Overview</a>
+<a class="nav-link" href="{{ url_for('orders') }}"><i class="bi bi-receipt"></i> Sales orders</a>
+<a class="nav-link" href="{{ url_for('invoices') }}"><i class="bi bi-file-earmark-text"></i> GST invoices</a>
+<a class="nav-link" href="{{ url_for('production') }}"><i class="bi bi-gear-wide-connected"></i> Production</a>
+<a class="nav-link" href="{{ url_for('purchase') }}"><i class="bi bi-truck"></i> Purchases</a>
+<a class="nav-link" href="{{ url_for('inventory') }}"><i class="bi bi-boxes"></i> Inventory & ledger</a>
+<a class="nav-link" href="{{ url_for('payments') }}"><i class="bi bi-cash-coin"></i> Collections</a>
+<a class="nav-link" href="{{ url_for('customers') }}"><i class="bi bi-people"></i> Customers</a>
+<div class="side-label mt-4">INTELLIGENCE</div>
+<a class="nav-link" href="{{ url_for('ai_insights') }}"><i class="bi bi-stars"></i> AI predictions</a>
+<a class="nav-link" href="{{ url_for('reports') }}"><i class="bi bi-bar-chart-line"></i> Reports & exports</a>
+<a class="nav-link" href="{{ url_for('audit_page') }}"><i class="bi bi-shield-check"></i> Audit trail</a>
+<div class="sidebar-bottom"><div class="user-chip"><div class="avatar">{{ session.get('username','U')[0]|upper }}</div><div><b>{{ session.get('username') }}</b><small>{{ session.get('role') }}</small></div></div><a class="logout" href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right"></i></a></div>
+</aside>
+<main class="main-area">
+<header class="topbar"><div><span class="eyebrow">FACTORY OPERATIONS</span><h6>{% block page_heading %}Overview{% endblock %}</h6></div><div class="top-user"><span class="status-dot"></span> {{ session.get('role') }} <span class="top-avatar">{{ session.get('username','U')[0]|upper }}</span></div></header>
+<div class="content-wrap">
+{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for category,message in messages %}<div class="alert alert-{{ category }} alert-dismissible fade show">{{ message }}<button class="btn-close" data-bs-dismiss="alert"></button></div>{% endfor %}{% endif %}{% endwith %}
+{% block content %}{% endblock %}
+</div>
+</main></div>
+{% else %}{% block public_content %}{% endblock %}{% endif %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% block scripts %}{% endblock %}
+</body></html>

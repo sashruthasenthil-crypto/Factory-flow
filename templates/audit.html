@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block page_heading %}Audit trail{% endblock %}{% block content %}
+<div class="page-intro"><div><span class="eyebrow">TRACEABILITY</span><h2>Audit trail</h2><p>Recent actions recorded by users across the application.</p></div></div>
+<div class="panel-card"><div class="table-responsive"><table class="table"><thead><tr><th>Timestamp</th><th>User</th><th>Action</th><th>Details</th></tr></thead><tbody>{% for r in rows %}<tr><td>{{ r.created_at }}</td><td>{{ r.username }}</td><td><span class="status status-approved">{{ r.action }}</span></td><td>{{ r.detail }}</td></tr>{% else %}<tr><td colspan="4" class="muted text-center">No audit actions recorded.</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block page_heading %}Customers{% endblock %}{% block content %}
+<div class="page-intro"><div><span class="eyebrow">CUSTOMER MASTER</span><h2>Customers</h2><p>Customer details used for order entry and GST invoice generation.</p></div></div>
+<div class="panel-card"><div class="table-responsive"><table class="table"><thead><tr><th>Customer</th><th>State</th><th>GSTIN</th><th>Phone</th></tr></thead><tbody>{% for r in rows %}<tr><td class="fw-semibold">{{ r.name }}</td><td>{{ r.state }}</td><td>{{ r.gstin }}</td><td>{{ r.phone }}</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}
